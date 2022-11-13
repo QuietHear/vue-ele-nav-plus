@@ -1,0 +1,212 @@
+/*
+ * @Author: aFei
+ * @Date: 2022-07-25 17:00:00
+*/
+/*
+ * @LastEditors: aFei
+ * @LastEditTime: 2022-08-03 10:17:51
+*/
+:root {
+  --ele-nav-bg                : #fff;
+  --ele-nav-bg-hor            : #fff;
+  --ele-nav-menu-height       : 60px;
+  --ele-nav-menu-second-height: 40px;
+  --ele-nav-text              : #303133;
+  --ele-nav-menu-bg2          : transparent;
+  --ele-nav-menu-bg3          : transparent;
+  --ele-nav-menu-bg4          : transparent;
+  --ele-nav-menu-bg-hover     : #fef5e6;
+  --ele-nav-menu-active       : var(--el-color-primary);
+}
+
+.vue-ele-nav-plus {
+
+  // 纵向
+  &.el-menu--vertical {
+    border-right    : none;
+    background-color: var(--ele-nav-bg);
+    padding         : 10px 0 100px;
+
+    // 折叠
+    &.el-menu--collapse {
+
+      .el-sub-menu__title,
+      .el-menu-item {
+        overflow: hidden;
+      }
+
+      .parent-title,
+      .el-menu-item {
+        i {
+          margin-right: 0;
+          text-align  : center;
+        }
+      }
+
+      >.el-sub-menu>.el-sub-menu__title .parent-title>span {
+        height    : 0;
+        width     : 0;
+        overflow  : hidden;
+        visibility: hidden;
+        display   : inline-block;
+      }
+    }
+
+    .parent-title {
+      width: 100%;
+    }
+
+    .el-sub-menu.replace-active>.el-sub-menu__title,
+    .el-menu-item.replace-active {
+      overflow: hidden;
+
+      &:after {
+        content         : '';
+        position        : absolute;
+        top             : 0;
+        left            : 0;
+        width           : 150%;
+        height          : 100%;
+        box-sizing      : border-box;
+        opacity         : 0.4;
+        z-index         : 1;
+        background-image: -webkit-linear-gradient(0deg, var(--ele-nav-menu-active) 0%, transparent 25%);
+        animation       : navGradient 1s 1;
+      }
+    }
+
+    &>.el-sub-menu>.el-menu {
+      background-color: var(--ele-nav-menu-bg2);
+
+      &>.el-sub-menu>.el-menu {
+        background-color: var(--ele-nav-menu-bg3);
+
+        &>.el-sub-menu>.el-menu {
+          background-color: var(--ele-nav-menu-bg4);
+        }
+      }
+    }
+  }
+
+  // 横向
+  &.el-menu--horizontal {
+    background-color: var(--ele-nav-bg-hor);
+    border-bottom   : none;
+
+    .el-sub-menu.replace-active>.el-sub-menu__title,
+    .el-menu-item.replace-active {
+      &:after {
+        content      : '';
+        position     : absolute;
+        top          : 0;
+        left         : 0;
+        width        : 100%;
+        height       : 100%;
+        box-sizing   : border-box;
+        z-index      : 1;
+        animation    : navGradientHor 0.4s 1 ease-in-out;
+        border-bottom: 4px solid var(--ele-nav-menu-active);
+      }
+    }
+  }
+
+  .el-menu-item,
+  .el-sub-menu__title {
+    height       : var(--ele-nav-menu-height) !important;
+    line-height  : var(--ele-nav-menu-height) !important;
+    user-select  : none;
+    color        : var(--ele-nav-text) !important;
+    border-bottom: none !important;
+
+    &:hover {
+      background-color: var(--ele-nav-menu-bg-hover) !important;
+    }
+  }
+
+  .parent-title,
+  .el-menu-item {
+    i {
+      margin-right: 5px;
+      font-size   : 18px;
+      width       : var(--el-menu-icon-width);
+    }
+  }
+
+  .el-sub-menu.replace-active>.el-sub-menu__title,
+  .el-menu-item.replace-active,
+  .el-sub-menu.replace-active-child>.el-sub-menu__title,
+  .el-menu-item.replace-active-child {
+    color: var(--ele-nav-menu-active) !important;
+  }
+
+  // 纵向动画
+  @keyframes navGradient {
+    0% {
+      left: -50%;
+    }
+
+    100% {
+      left: 0;
+    }
+  }
+
+  // 横向动画
+  @keyframes navGradientHor {
+    0% {
+      left : 50%;
+      width: 0;
+    }
+
+    100% {
+      left : 0;
+      width: 100%;
+    }
+  }
+}
+
+// 横向弹出菜单样式
+.vue-ele-nav-plus-hor-first {
+  border: 0 !important;
+
+  &>.el-menu {
+    background-color: var(--ele-nav-menu-bg2);
+  }
+
+  .second {
+    border: 0 !important;
+
+    &>.el-menu {
+      background-color: var(--ele-nav-menu-bg3);
+    }
+  }
+
+  .third {
+    border: 0 !important;
+
+    &>.el-menu {
+      background-color: var(--ele-nav-menu-bg4);
+    }
+  }
+
+  .parent-title {
+    width: 100%;
+  }
+
+  .el-menu-item,
+  .el-sub-menu__title {
+    height          : var(--ele-nav-menu-second-height) !important;
+    line-height     : var(--ele-nav-menu-second-height) !important;
+    user-select     : none;
+    color           : var(--ele-nav-text) !important;
+    background-color: transparent !important;
+
+    &:hover {
+      background-color: var(--ele-nav-menu-bg-hover) !important;
+    }
+  }
+
+  .el-sub-menu.replace-active-child>.el-sub-menu__title,
+  .el-menu-item.replace-active-child {
+    color: var(--ele-nav-menu-active) !important;
+  }
+}

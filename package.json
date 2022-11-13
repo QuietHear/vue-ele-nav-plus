@@ -1,0 +1,36 @@
+{
+  "name": "vue-ele-nav-plus",
+  "description": "基于elementPlus、权限、国际化的vue3 nav组件",
+  "version": "0.0.1",
+  "author": "aFei <1106728884@qq.com>",
+  "license": "MIT",
+  "main": "dist/vue-ele-nav-plus.umd.js",
+  "exports": {
+    ".": {
+      "import": "./dist/vue-ele-nav-plus.mjs",
+      "require": "./dist/vue-ele-nav-plus.umd.js"
+    },
+    "./index.css": "./dist/style.css"
+  },
+  "private": false,
+  "scripts": {
+    "build": "vite build"
+  },
+  "keywords": [
+    "Vue3",
+    "ElementPlus",
+    "permission",
+    "i18n",
+    "vue-router4"
+  ],
+  "homepage": "https://github.com/QuietHear",
+  "repository": "https://github.com/QuietHear/vue-ele-nav-plus",
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^3.2.0",
+    "element-plus": "^2.2.20",
+    "sass": "^1.53.0",
+    "vite": "^3.2.3",
+    "vue": "^3.2.41",
+    "vue-router": "^4.1.6"
+  }
+}
