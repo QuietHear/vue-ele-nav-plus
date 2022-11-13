@@ -1,9 +1,12 @@
-# 基于element-menu组件的菜单组件（vue3版）
+# 基于el-menu的菜单组件（vue3版）
 ***vue3版本*** | [**vue2版本**](https://github.com/QuietHear/vue-ele-nav '浏览')
 
 
 ## 安装
 	npm i vue-ele-nav-plus
+	// 需要安装前置依赖组件，已安装请忽略
+	npm i vue-router
+	npm i element-plus
 
 ## 使用
 	import vueEleNavPlus from "vue-ele-nav-plus";
@@ -72,5 +75,26 @@
 >
 	如果父级菜单设置了showSelf:true，则无视此全局设置
 >
+
+* `showCollapsebtn`：纵向时是否展示收缩按钮-->Boolean;非必传;默认*true*
+
+* `collapseMaxWidth`：纵向时未收缩时屏幕最大像素-->Number;非必传;默认*960*
+>
+	el-->element图标
+	iconfont-->iconfont图标
+	其他-->自定义
+>
+
+* `openBtnClass`：展开时的按钮-->String;非必传;默认*'el/Expand'*
+>
+	传值类型与菜单的图标传值一致
+>
+
+* `closeBtnClass`：收起时的按钮-->String;非必传;默认*'el/Fold'*
+>
+	传值类型与菜单的图标传值一致
+>
+
+* `@collapseChange`：纵向菜单触发收缩时触发-->第一个参数返回当前是否收缩true/false
 
 * 其余参数与官网ele-menu相同
