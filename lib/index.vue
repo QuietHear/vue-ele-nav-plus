@@ -4,7 +4,7 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2022-11-13 16:04:19
+ * @LastEditTime: 2022-11-17 18:54:57
 */
 <template>
   <template v-if="$attrs['mode'] !== 'horizontal'">
@@ -354,9 +354,12 @@ export default {
     const opens = ref([]);
     // 展示菜单
     const navInformation = ref([]);
-    watch(props.menu, () => {
-      initMenu();
-    });
+    watch(
+      () => props.menu,
+      () => {
+        initMenu();
+      }
+    );
     // 初始化菜单
     const initMenu = async () => {
       init.value = false;

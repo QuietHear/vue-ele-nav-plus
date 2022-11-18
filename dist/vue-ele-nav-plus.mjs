@@ -48,9 +48,12 @@ const m = (i, B) => {
   },
   setup(i, { attrs: B, slots: d, emit: l, expose: V }) {
     const D = Z(), g = $(), C = I([]), p = I(!1), E = I([]), x = I([]);
-    j(i.menu, () => {
-      n();
-    });
+    j(
+      () => i.menu,
+      () => {
+        n();
+      }
+    );
     const n = async () => {
       if (p.value = !1, C.value = JSON.parse(JSON.stringify(i.menu)), C.value.length > 0) {
         c(C.value), x.value = JSON.parse(JSON.stringify(C.value)), h(x.value);
