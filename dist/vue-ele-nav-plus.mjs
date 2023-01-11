@@ -1,13 +1,10 @@
-import { ref as I, watch as j, onMounted as K, onBeforeUnmount as Q, resolveComponent as O, openBlock as e, createElementBlock as o, createVNode as X, withCtx as s, createBlock as r, mergeProps as Y, Fragment as v, renderList as S, normalizeClass as f, createElementVNode as w, resolveDynamicComponent as A, toDisplayString as y, createCommentVNode as N, createTextVNode as M } from "vue";
-import { useRouter as Z, useRoute as $ } from "vue-router";
-const m = (i, B) => {
-  const d = i.__vccOpts || i;
-  for (const [l, V] of B)
-    d[l] = V;
-  return d;
-}, ee = {
-  name: "vueEleNavPlus",
-  emits: ["collapseChange"],
+import { ref as S, watch as G, onMounted as Y, onBeforeUnmount as Z, resolveComponent as b, openBlock as e, createElementBlock as a, createVNode as m, withCtx as s, createBlock as u, mergeProps as ee, unref as H, Fragment as v, renderList as w, normalizeClass as r, createElementVNode as C, resolveDynamicComponent as O, toDisplayString as h, createCommentVNode as N, createTextVNode as P } from "vue";
+import { useRouter as ne, useRoute as le } from "vue-router";
+const ce = {
+  key: 0,
+  class: "vue-ele-nav-plus-box"
+}, ae = ["onClick"], oe = ["onClick"], te = ["onClick"], ie = ["onClick"], se = ["onClick"], ue = ["onClick"], re = {
+  __name: "index",
   props: {
     menu: {
       type: Array,
@@ -46,425 +43,412 @@ const m = (i, B) => {
       default: "el/Fold"
     }
   },
-  setup(i, { attrs: B, slots: d, emit: l, expose: V }) {
-    const D = Z(), g = $(), C = I([]), p = I(!1), E = I([]), x = I([]);
-    j(
-      () => i.menu,
+  emits: ["collapseChange"],
+  setup(d, { emit: R }) {
+    const g = d, K = ne(), F = le(), B = S([]), _ = S(!1), W = S([]), p = S([]);
+    G(
+      () => g.menu,
       () => {
-        n();
+        D();
       }
     );
-    const n = async () => {
-      if (p.value = !1, C.value = JSON.parse(JSON.stringify(i.menu)), C.value.length > 0) {
-        c(C.value), x.value = JSON.parse(JSON.stringify(C.value)), h(x.value);
-        let t = (await R(C.value, g.name)).index;
-        a(t), p.value = !0, P();
+    const D = async () => {
+      if (_.value = !1, B.value = JSON.parse(JSON.stringify(g.menu)), B.value.length > 0) {
+        L(B.value), p.value = JSON.parse(JSON.stringify(B.value)), T(p.value);
+        let c = (await V(B.value, F.name)).index;
+        j(c), _.value = !0, U();
       }
-    }, c = (u, t) => {
-      u.forEach((k, _) => {
-        k.index = `${t !== void 0 ? t + "-" : ""}${_}`, k.active = !1, k.icon = k.icon ? k.icon.split("/") : void 0, k.children && k.children.length > 0 ? c(k.children, k.index) : k.children = [];
+    }, L = (l, c) => {
+      l.forEach((i, f) => {
+        i.index = `${c !== void 0 ? c + "-" : ""}${f}`, i.active = !1, i.icon = i.icon ? i.icon.split("/") : void 0, i.children && i.children.length > 0 ? L(i.children, i.index) : i.children = [];
       });
-    }, a = (u, t = 0) => {
-      const k = u.split("-"), _ = k.slice(0, t + 1).join("-");
-      E.value.push(_), t += 1, t < k.length - 1 && a(u, t);
-    }, h = (u) => {
-      for (let t = 0; t < u.length; t++)
-        u[t].show !== !1 ? !i.onlyShowFirst && u[t].children && u[t].children.length > 0 ? h(u[t].children) : u[t].children = [] : (u.splice(t, 1), t -= 1);
+    }, j = (l, c = 0) => {
+      const i = l.split("-"), f = i.slice(0, c + 1).join("-");
+      W.value.push(f), c += 1, c < i.length - 1 && j(l, c);
+    }, T = (l) => {
+      for (let c = 0; c < l.length; c++)
+        l[c].show !== !1 ? !g.onlyShowFirst && l[c].children && l[c].children.length > 0 ? T(l[c].children) : l[c].children = [] : (l.splice(c, 1), c -= 1);
     };
-    j(g, () => {
-      P();
+    G(F, () => {
+      U();
     });
-    const P = async () => {
-      L(x.value);
-      let u = await R(C.value, g.name);
-      if (i.onlyShowFirst) {
-        let t = u.index.split("-")[0];
-        x.value.filter((k) => k.index === t).length > 0 && b(x.value, t);
-      } else if (u.markName) {
-        let t = await R(
-          x.value,
-          u.markName
+    const U = async () => {
+      q(p.value);
+      let l = await V(B.value, F.name);
+      if (g.onlyShowFirst) {
+        let c = l.index.split("-")[0];
+        p.value.filter((i) => i.index === c).length > 0 && I(p.value, c);
+      } else if (l.markName) {
+        let c = await V(
+          p.value,
+          l.markName
         );
-        b(x.value, t.index);
+        I(p.value, c.index);
       } else
-        b(x.value, u.index);
-    }, L = (u) => {
-      u.forEach((t) => {
-        t.active = !1, t.children.length > 0 && L(t.children);
+        I(p.value, l.index);
+    }, q = (l) => {
+      l.forEach((c) => {
+        c.active = !1, c.children.length > 0 && q(c.children);
       });
-    }, b = (u, t, k = 0) => {
-      const _ = t.split("-"), W = _.slice(0, k + 1).join("-");
-      let z = u.filter((H) => H.index === W);
-      z.length > 0 && (z[0].active = !0, k += 1, k < _.length && b(z[0].children, t, k));
-    }, R = (u, t) => new Promise((k) => {
-      u.forEach((_) => {
-        _.name === t ? k(_) : _.children.length > 0 && R(_.children, t).then((W) => {
-          k(W);
+    }, I = (l, c, i = 0) => {
+      const f = c.split("-"), x = f.slice(0, i + 1).join("-");
+      let E = l.filter((A) => A.index === x);
+      E.length > 0 && (E[0].active = !0, i += 1, i < f.length && I(E[0].children, c, i));
+    }, V = (l, c) => new Promise((i) => {
+      l.forEach((f) => {
+        f.name === c ? i(f) : f.children.length > 0 && V(f.children, c).then((x) => {
+          i(x);
         });
       });
-    }), T = (u) => {
-      D.push({ name: u.name });
+    }), y = (l) => {
+      K.push({ name: l.name });
     };
-    n();
-    const U = I(i.openBtnClass.split("/")), q = I(i.closeBtnClass.split("/"));
-    let J = I(!1);
-    const F = () => {
-      i.collapseMaxWidth > 0 && (J.value = document.body.clientWidth < i.collapseMaxWidth), l("collapseChange", J.value);
-    }, G = () => {
-      J.value = !J.value, l("collapseChange", J.value);
+    D();
+    const J = S(g.openBtnClass.split("/")), M = S(g.closeBtnClass.split("/"));
+    let $ = S(!1);
+    const z = () => {
+      g.collapseMaxWidth > 0 && ($.value = document.body.clientWidth < g.collapseMaxWidth), R("collapseChange", $.value);
+    }, Q = () => {
+      $.value = !$.value, R("collapseChange", $.value);
     };
-    return K(() => {
-      F(), window.addEventListener("resize", F);
-    }), Q(() => {
-      window.removeEventListener("resize", F);
-    }), {
-      opens: E,
-      init: p,
-      navInformation: x,
-      menuItemClick: T,
-      openBtnArr: U,
-      closeBtnArr: q,
-      isCollapse: J,
-      manualChange: G
-    };
-  }
-}, ne = {
-  key: 0,
-  class: "vue-ele-nav-plus-box"
-}, le = ["onClick"], ce = ["onClick"], ae = ["onClick"], oe = ["onClick"], te = ["onClick"], ie = ["onClick"];
-function se(i, B, d, l, V, D) {
-  const g = O("el-icon"), C = O("el-menu-item"), p = O("el-sub-menu"), E = O("el-menu"), x = O("el-scrollbar");
-  return i.$attrs.mode !== "horizontal" ? (e(), o("div", ne, [
-    X(x, null, {
-      default: s(() => [
-        l.init ? (e(), r(E, Y({
-          key: 0,
-          "default-openeds": l.opens,
-          class: "vue-ele-nav-plus",
-          collapse: l.isCollapse
-        }, i.$attrs), {
+    return Y(() => {
+      z(), window.addEventListener("resize", z);
+    }), Z(() => {
+      window.removeEventListener("resize", z);
+    }), (l, c) => {
+      const i = b("el-icon"), f = b("el-menu-item"), x = b("el-sub-menu"), E = b("el-menu"), A = b("el-scrollbar");
+      return l.$attrs.mode !== "horizontal" ? (e(), a("div", ce, [
+        m(A, null, {
           default: s(() => [
-            (e(!0), o(v, null, S(l.navInformation, (n) => (e(), o(v, {
+            _.value ? (e(), u(E, ee({
+              key: 0,
+              "default-openeds": W.value,
+              class: "vue-ele-nav-plus",
+              collapse: H($)
+            }, l.$attrs), {
+              default: s(() => [
+                (e(!0), a(v, null, w(p.value, (n) => (e(), a(v, {
+                  key: n.index
+                }, [
+                  n.children.length > 0 ? (e(), u(x, {
+                    key: 0,
+                    class: r(n.active ? "replace-active" : ""),
+                    "popper-class": "vue-ele-nav-plus-hor-first",
+                    index: n.index
+                  }, {
+                    title: s(() => [
+                      C("div", {
+                        class: "parent-title",
+                        onClick: (o) => !d.clickParentJump && n.showSelf !== !0 || y(n)
+                      }, [
+                        n.icon ? (e(), a(v, { key: 0 }, [
+                          n.icon[0] === "el" ? (e(), u(i, { key: 0 }, {
+                            default: s(() => [
+                              (e(), u(O(n.icon[1])))
+                            ]),
+                            _: 2
+                          }, 1024)) : n.icon[0] === "iconfont" ? (e(), a("i", {
+                            key: 1,
+                            class: r(["icon iconfont", "icon-" + n.icon[1]])
+                          }, null, 2)) : (e(), a("i", {
+                            key: 2,
+                            class: r(n.icon[0])
+                          }, h(n.icon[1]), 3))
+                        ], 64)) : N("", !0),
+                        C("span", null, h(d.i18n ? l.$t(n.title) : n.title), 1)
+                      ], 8, ae)
+                    ]),
+                    default: s(() => [
+                      (e(!0), a(v, null, w(n.children, (o) => (e(), a(v, {
+                        key: o.index
+                      }, [
+                        o.children.length > 0 ? (e(), u(x, {
+                          key: 0,
+                          class: r(o.active ? "replace-active-child" : ""),
+                          "popper-class": "second",
+                          index: o.index
+                        }, {
+                          title: s(() => [
+                            C("div", {
+                              class: "parent-title",
+                              onClick: (t) => !d.clickParentJump && o.showSelf !== !0 || y(o)
+                            }, h(d.i18n ? l.$t(o.title) : o.title), 9, oe)
+                          ]),
+                          default: s(() => [
+                            (e(!0), a(v, null, w(o.children, (t) => (e(), a(v, {
+                              key: t.index
+                            }, [
+                              t.children.length > 0 ? (e(), u(x, {
+                                key: 0,
+                                class: r(t.active ? "replace-active-child" : ""),
+                                "popper-class": "third",
+                                index: t.index
+                              }, {
+                                title: s(() => [
+                                  C("div", {
+                                    class: "parent-title",
+                                    onClick: (k) => !d.clickParentJump && t.showSelf !== !0 || y(t)
+                                  }, h(d.i18n ? l.$t(t.title) : t.title), 9, te)
+                                ]),
+                                default: s(() => [
+                                  (e(!0), a(v, null, w(t.children, (k) => (e(), u(f, {
+                                    key: k.index,
+                                    class: r(k.active ? "replace-active-child" : ""),
+                                    index: k.index,
+                                    onClick: (X) => y(k)
+                                  }, {
+                                    default: s(() => [
+                                      P(h(d.i18n ? l.$t(k.title) : k.title), 1)
+                                    ]),
+                                    _: 2
+                                  }, 1032, ["class", "index", "onClick"]))), 128))
+                                ]),
+                                _: 2
+                              }, 1032, ["class", "index"])) : (e(), u(f, {
+                                key: 1,
+                                class: r(t.active ? "replace-active-child" : ""),
+                                index: t.index,
+                                onClick: (k) => y(t)
+                              }, {
+                                default: s(() => [
+                                  P(h(d.i18n ? l.$t(t.title) : t.title), 1)
+                                ]),
+                                _: 2
+                              }, 1032, ["class", "index", "onClick"]))
+                            ], 64))), 128))
+                          ]),
+                          _: 2
+                        }, 1032, ["class", "index"])) : (e(), u(f, {
+                          key: 1,
+                          class: r(o.active ? "replace-active-child" : ""),
+                          index: o.index,
+                          onClick: (t) => y(o)
+                        }, {
+                          default: s(() => [
+                            P(h(d.i18n ? l.$t(o.title) : o.title), 1)
+                          ]),
+                          _: 2
+                        }, 1032, ["class", "index", "onClick"]))
+                      ], 64))), 128))
+                    ]),
+                    _: 2
+                  }, 1032, ["class", "index"])) : (e(), u(f, {
+                    key: 1,
+                    class: r(n.active ? "replace-active" : ""),
+                    index: n.index,
+                    onClick: (o) => y(n)
+                  }, {
+                    default: s(() => [
+                      n.icon ? (e(), a(v, { key: 0 }, [
+                        n.icon[0] === "el" ? (e(), u(i, { key: 0 }, {
+                          default: s(() => [
+                            (e(), u(O(n.icon[1])))
+                          ]),
+                          _: 2
+                        }, 1024)) : n.icon[0] === "iconfont" ? (e(), a("i", {
+                          key: 1,
+                          class: r(["icon iconfont", "icon-" + n.icon[1]])
+                        }, null, 2)) : (e(), a("i", {
+                          key: 2,
+                          class: r(n.icon[0])
+                        }, h(n.icon[1]), 3))
+                      ], 64)) : N("", !0),
+                      C("span", null, h(d.i18n ? l.$t(n.title) : n.title), 1)
+                    ]),
+                    _: 2
+                  }, 1032, ["class", "index", "onClick"]))
+                ], 64))), 128))
+              ]),
+              _: 1
+            }, 16, ["default-openeds", "collapse"])) : N("", !0)
+          ]),
+          _: 1
+        }),
+        d.collapseMaxWidth > 0 && d.showCollapseBtn ? (e(), a("div", {
+          key: 0,
+          class: "collapse-btn",
+          onClick: Q
+        }, [
+          H($) ? (e(), a(v, { key: 0 }, [
+            J.value[0] === "el" ? (e(), u(i, { key: 0 }, {
+              default: s(() => [
+                (e(), u(O(J.value[1])))
+              ]),
+              _: 1
+            })) : J.value[0] === "iconfont" ? (e(), a("i", {
+              key: 1,
+              class: r(["icon iconfont", "icon-" + J.value[1]])
+            }, null, 2)) : (e(), a("i", {
+              key: 2,
+              class: r(J.value[0])
+            }, h(J.value[1]), 3))
+          ], 64)) : (e(), a(v, { key: 1 }, [
+            M.value[0] === "el" ? (e(), u(i, { key: 0 }, {
+              default: s(() => [
+                (e(), u(O(M.value[1])))
+              ]),
+              _: 1
+            })) : M.value[0] === "iconfont" ? (e(), a("i", {
+              key: 1,
+              class: r(["icon iconfont", "icon-" + M.value[1]])
+            }, null, 2)) : (e(), a("i", {
+              key: 2,
+              class: r(M.value[0])
+            }, h(M.value[1]), 3))
+          ], 64))
+        ])) : N("", !0)
+      ])) : (e(), a(v, { key: 1 }, [
+        _.value ? (e(), u(E, {
+          key: 0,
+          "default-openeds": W.value,
+          class: "vue-ele-nav-plus"
+        }, {
+          default: s(() => [
+            (e(!0), a(v, null, w(p.value, (n) => (e(), a(v, {
               key: n.index
             }, [
-              n.children.length > 0 ? (e(), r(p, {
+              n.children.length > 0 ? (e(), u(x, {
                 key: 0,
-                class: f(n.active ? "replace-active" : ""),
+                class: r(n.active ? "replace-active" : ""),
                 "popper-class": "vue-ele-nav-plus-hor-first",
                 index: n.index
               }, {
                 title: s(() => [
-                  w("div", {
+                  C("div", {
                     class: "parent-title",
-                    onClick: (c) => !d.clickParentJump && n.showSelf !== !0 || l.menuItemClick(n)
+                    onClick: (o) => !d.clickParentJump && n.showSelf !== !0 || y(n)
                   }, [
-                    n.icon ? (e(), o(v, { key: 0 }, [
-                      n.icon[0] === "el" ? (e(), r(g, { key: 0 }, {
+                    n.icon ? (e(), a(v, { key: 0 }, [
+                      n.icon[0] === "el" ? (e(), u(i, { key: 0 }, {
                         default: s(() => [
-                          (e(), r(A(n.icon[1])))
+                          (e(), u(O(n.icon[1])))
                         ]),
                         _: 2
-                      }, 1024)) : n.icon[0] === "iconfont" ? (e(), o("i", {
+                      }, 1024)) : n.icon[0] === "iconfont" ? (e(), a("i", {
                         key: 1,
-                        class: f(["icon iconfont", "icon-" + n.icon[1]])
-                      }, null, 2)) : (e(), o("i", {
+                        class: r(["icon iconfont", "icon-" + n.icon[1]])
+                      }, null, 2)) : (e(), a("i", {
                         key: 2,
-                        class: f(n.icon[0])
-                      }, y(n.icon[1]), 3))
+                        class: r(n.icon[0])
+                      }, h(n.icon[1]), 3))
                     ], 64)) : N("", !0),
-                    w("span", null, y(d.i18n ? i.$t(n.title) : n.title), 1)
-                  ], 8, le)
+                    C("span", null, h(d.i18n ? l.$t(n.title) : n.title), 1)
+                  ], 8, ie)
                 ]),
                 default: s(() => [
-                  (e(!0), o(v, null, S(n.children, (c) => (e(), o(v, {
-                    key: c.index
+                  (e(!0), a(v, null, w(n.children, (o) => (e(), a(v, {
+                    key: o.index
                   }, [
-                    c.children.length > 0 ? (e(), r(p, {
+                    o.children.length > 0 ? (e(), u(x, {
                       key: 0,
-                      class: f(c.active ? "replace-active-child" : ""),
+                      class: r(o.active ? "replace-active-child" : ""),
                       "popper-class": "second",
-                      index: c.index
+                      index: o.index
                     }, {
                       title: s(() => [
-                        w("div", {
+                        C("div", {
                           class: "parent-title",
-                          onClick: (a) => !d.clickParentJump && c.showSelf !== !0 || l.menuItemClick(c)
-                        }, y(d.i18n ? i.$t(c.title) : c.title), 9, ce)
+                          onClick: (t) => !d.clickParentJump && o.showSelf !== !0 || y(o)
+                        }, h(d.i18n ? l.$t(o.title) : o.title), 9, se)
                       ]),
                       default: s(() => [
-                        (e(!0), o(v, null, S(c.children, (a) => (e(), o(v, {
-                          key: a.index
+                        (e(!0), a(v, null, w(o.children, (t) => (e(), a(v, {
+                          key: t.index
                         }, [
-                          a.children.length > 0 ? (e(), r(p, {
+                          t.children.length > 0 ? (e(), u(x, {
                             key: 0,
-                            class: f(a.active ? "replace-active-child" : ""),
+                            class: r(t.active ? "replace-active-child" : ""),
                             "popper-class": "third",
-                            index: a.index
+                            index: t.index
                           }, {
                             title: s(() => [
-                              w("div", {
+                              C("div", {
                                 class: "parent-title",
-                                onClick: (h) => !d.clickParentJump && a.showSelf !== !0 || l.menuItemClick(a)
-                              }, y(d.i18n ? i.$t(a.title) : a.title), 9, ae)
+                                onClick: (k) => !d.clickParentJump && t.showSelf !== !0 || y(t)
+                              }, h(d.i18n ? l.$t(t.title) : t.title), 9, ue)
                             ]),
                             default: s(() => [
-                              (e(!0), o(v, null, S(a.children, (h) => (e(), r(C, {
-                                key: h.index,
-                                class: f(h.active ? "replace-active-child" : ""),
-                                index: h.index,
-                                onClick: (P) => l.menuItemClick(h)
+                              (e(!0), a(v, null, w(t.children, (k) => (e(), u(f, {
+                                key: k.index,
+                                class: r(k.active ? "replace-active-child" : ""),
+                                index: k.index,
+                                onClick: (X) => y(k)
                               }, {
                                 default: s(() => [
-                                  M(y(d.i18n ? i.$t(h.title) : h.title), 1)
+                                  P(h(d.i18n ? l.$t(k.title) : k.title), 1)
                                 ]),
                                 _: 2
                               }, 1032, ["class", "index", "onClick"]))), 128))
                             ]),
                             _: 2
-                          }, 1032, ["class", "index"])) : (e(), r(C, {
+                          }, 1032, ["class", "index"])) : (e(), u(f, {
                             key: 1,
-                            class: f(a.active ? "replace-active-child" : ""),
-                            index: a.index,
-                            onClick: (h) => l.menuItemClick(a)
+                            class: r(t.active ? "replace-active-child" : ""),
+                            index: t.index,
+                            onClick: (k) => y(t)
                           }, {
                             default: s(() => [
-                              M(y(d.i18n ? i.$t(a.title) : a.title), 1)
+                              P(h(d.i18n ? l.$t(t.title) : t.title), 1)
                             ]),
                             _: 2
                           }, 1032, ["class", "index", "onClick"]))
                         ], 64))), 128))
                       ]),
                       _: 2
-                    }, 1032, ["class", "index"])) : (e(), r(C, {
+                    }, 1032, ["class", "index"])) : (e(), u(f, {
                       key: 1,
-                      class: f(c.active ? "replace-active-child" : ""),
-                      index: c.index,
-                      onClick: (a) => l.menuItemClick(c)
+                      class: r(o.active ? "replace-active-child" : ""),
+                      index: o.index,
+                      onClick: (t) => y(o)
                     }, {
                       default: s(() => [
-                        M(y(d.i18n ? i.$t(c.title) : c.title), 1)
+                        P(h(d.i18n ? l.$t(o.title) : o.title), 1)
                       ]),
                       _: 2
                     }, 1032, ["class", "index", "onClick"]))
                   ], 64))), 128))
                 ]),
                 _: 2
-              }, 1032, ["class", "index"])) : (e(), r(C, {
+              }, 1032, ["class", "index"])) : (e(), u(f, {
                 key: 1,
-                class: f(n.active ? "replace-active" : ""),
+                class: r(n.active ? "replace-active" : ""),
                 index: n.index,
-                onClick: (c) => l.menuItemClick(n)
+                onClick: (o) => y(n)
               }, {
                 default: s(() => [
-                  n.icon ? (e(), o(v, { key: 0 }, [
-                    n.icon[0] === "el" ? (e(), r(g, { key: 0 }, {
+                  n.icon ? (e(), a(v, { key: 0 }, [
+                    n.icon[0] === "el" ? (e(), u(i, { key: 0 }, {
                       default: s(() => [
-                        (e(), r(A(n.icon[1])))
+                        (e(), u(O(n.icon[1])))
                       ]),
                       _: 2
-                    }, 1024)) : n.icon[0] === "iconfont" ? (e(), o("i", {
+                    }, 1024)) : n.icon[0] === "iconfont" ? (e(), a("i", {
                       key: 1,
-                      class: f(["icon iconfont", "icon-" + n.icon[1]])
-                    }, null, 2)) : (e(), o("i", {
+                      class: r(["icon iconfont", "icon-" + n.icon[1]])
+                    }, null, 2)) : (e(), a("i", {
                       key: 2,
-                      class: f(n.icon[0])
-                    }, y(n.icon[1]), 3))
+                      class: r(n.icon[0])
+                    }, h(n.icon[1]), 3))
                   ], 64)) : N("", !0),
-                  w("span", null, y(d.i18n ? i.$t(n.title) : n.title), 1)
+                  C("span", null, h(d.i18n ? l.$t(n.title) : n.title), 1)
                 ]),
                 _: 2
               }, 1032, ["class", "index", "onClick"]))
             ], 64))), 128))
           ]),
           _: 1
-        }, 16, ["default-openeds", "collapse"])) : N("", !0)
-      ]),
-      _: 1
-    }),
-    d.collapseMaxWidth > 0 && d.showCollapseBtn ? (e(), o("div", {
-      key: 0,
-      class: "collapse-btn",
-      onClick: B[0] || (B[0] = (...n) => l.manualChange && l.manualChange(...n))
-    }, [
-      l.isCollapse ? (e(), o(v, { key: 0 }, [
-        l.openBtnArr[0] === "el" ? (e(), r(g, { key: 0 }, {
-          default: s(() => [
-            (e(), r(A(l.openBtnArr[1])))
-          ]),
-          _: 1
-        })) : l.openBtnArr[0] === "iconfont" ? (e(), o("i", {
-          key: 1,
-          class: f(["icon iconfont", "icon-" + l.openBtnArr[1]])
-        }, null, 2)) : (e(), o("i", {
-          key: 2,
-          class: f(l.openBtnArr[0])
-        }, y(l.openBtnArr[1]), 3))
-      ], 64)) : (e(), o(v, { key: 1 }, [
-        l.closeBtnArr[0] === "el" ? (e(), r(g, { key: 0 }, {
-          default: s(() => [
-            (e(), r(A(l.closeBtnArr[1])))
-          ]),
-          _: 1
-        })) : l.closeBtnArr[0] === "iconfont" ? (e(), o("i", {
-          key: 1,
-          class: f(["icon iconfont", "icon-" + l.closeBtnArr[1]])
-        }, null, 2)) : (e(), o("i", {
-          key: 2,
-          class: f(l.closeBtnArr[0])
-        }, y(l.closeBtnArr[1]), 3))
-      ], 64))
-    ])) : N("", !0)
-  ])) : (e(), o(v, { key: 1 }, [
-    l.init ? (e(), r(E, {
-      key: 0,
-      "default-openeds": l.opens,
-      class: "vue-ele-nav-plus"
-    }, {
-      default: s(() => [
-        (e(!0), o(v, null, S(l.navInformation, (n) => (e(), o(v, {
-          key: n.index
-        }, [
-          n.children.length > 0 ? (e(), r(p, {
-            key: 0,
-            class: f(n.active ? "replace-active" : ""),
-            "popper-class": "vue-ele-nav-plus-hor-first",
-            index: n.index
-          }, {
-            title: s(() => [
-              w("div", {
-                class: "parent-title",
-                onClick: (c) => !d.clickParentJump && n.showSelf !== !0 || l.menuItemClick(n)
-              }, [
-                n.icon ? (e(), o(v, { key: 0 }, [
-                  n.icon[0] === "el" ? (e(), r(g, { key: 0 }, {
-                    default: s(() => [
-                      (e(), r(A(n.icon[1])))
-                    ]),
-                    _: 2
-                  }, 1024)) : n.icon[0] === "iconfont" ? (e(), o("i", {
-                    key: 1,
-                    class: f(["icon iconfont", "icon-" + n.icon[1]])
-                  }, null, 2)) : (e(), o("i", {
-                    key: 2,
-                    class: f(n.icon[0])
-                  }, y(n.icon[1]), 3))
-                ], 64)) : N("", !0),
-                w("span", null, y(d.i18n ? i.$t(n.title) : n.title), 1)
-              ], 8, oe)
-            ]),
-            default: s(() => [
-              (e(!0), o(v, null, S(n.children, (c) => (e(), o(v, {
-                key: c.index
-              }, [
-                c.children.length > 0 ? (e(), r(p, {
-                  key: 0,
-                  class: f(c.active ? "replace-active-child" : ""),
-                  "popper-class": "second",
-                  index: c.index
-                }, {
-                  title: s(() => [
-                    w("div", {
-                      class: "parent-title",
-                      onClick: (a) => !d.clickParentJump && c.showSelf !== !0 || l.menuItemClick(c)
-                    }, y(d.i18n ? i.$t(c.title) : c.title), 9, te)
-                  ]),
-                  default: s(() => [
-                    (e(!0), o(v, null, S(c.children, (a) => (e(), o(v, {
-                      key: a.index
-                    }, [
-                      a.children.length > 0 ? (e(), r(p, {
-                        key: 0,
-                        class: f(a.active ? "replace-active-child" : ""),
-                        "popper-class": "third",
-                        index: a.index
-                      }, {
-                        title: s(() => [
-                          w("div", {
-                            class: "parent-title",
-                            onClick: (h) => !d.clickParentJump && a.showSelf !== !0 || l.menuItemClick(a)
-                          }, y(d.i18n ? i.$t(a.title) : a.title), 9, ie)
-                        ]),
-                        default: s(() => [
-                          (e(!0), o(v, null, S(a.children, (h) => (e(), r(C, {
-                            key: h.index,
-                            class: f(h.active ? "replace-active-child" : ""),
-                            index: h.index,
-                            onClick: (P) => l.menuItemClick(h)
-                          }, {
-                            default: s(() => [
-                              M(y(d.i18n ? i.$t(h.title) : h.title), 1)
-                            ]),
-                            _: 2
-                          }, 1032, ["class", "index", "onClick"]))), 128))
-                        ]),
-                        _: 2
-                      }, 1032, ["class", "index"])) : (e(), r(C, {
-                        key: 1,
-                        class: f(a.active ? "replace-active-child" : ""),
-                        index: a.index,
-                        onClick: (h) => l.menuItemClick(a)
-                      }, {
-                        default: s(() => [
-                          M(y(d.i18n ? i.$t(a.title) : a.title), 1)
-                        ]),
-                        _: 2
-                      }, 1032, ["class", "index", "onClick"]))
-                    ], 64))), 128))
-                  ]),
-                  _: 2
-                }, 1032, ["class", "index"])) : (e(), r(C, {
-                  key: 1,
-                  class: f(c.active ? "replace-active-child" : ""),
-                  index: c.index,
-                  onClick: (a) => l.menuItemClick(c)
-                }, {
-                  default: s(() => [
-                    M(y(d.i18n ? i.$t(c.title) : c.title), 1)
-                  ]),
-                  _: 2
-                }, 1032, ["class", "index", "onClick"]))
-              ], 64))), 128))
-            ]),
-            _: 2
-          }, 1032, ["class", "index"])) : (e(), r(C, {
-            key: 1,
-            class: f(n.active ? "replace-active" : ""),
-            index: n.index,
-            onClick: (c) => l.menuItemClick(n)
-          }, {
-            default: s(() => [
-              n.icon ? (e(), o(v, { key: 0 }, [
-                n.icon[0] === "el" ? (e(), r(g, { key: 0 }, {
-                  default: s(() => [
-                    (e(), r(A(n.icon[1])))
-                  ]),
-                  _: 2
-                }, 1024)) : n.icon[0] === "iconfont" ? (e(), o("i", {
-                  key: 1,
-                  class: f(["icon iconfont", "icon-" + n.icon[1]])
-                }, null, 2)) : (e(), o("i", {
-                  key: 2,
-                  class: f(n.icon[0])
-                }, y(n.icon[1]), 3))
-              ], 64)) : N("", !0),
-              w("span", null, y(d.i18n ? i.$t(n.title) : n.title), 1)
-            ]),
-            _: 2
-          }, 1032, ["class", "index", "onClick"]))
-        ], 64))), 128))
-      ]),
-      _: 1
-    }, 8, ["default-openeds"])) : N("", !0)
-  ], 64));
-}
-const re = /* @__PURE__ */ m(ee, [["render", se]]), de = [re], ue = {
-  install(i) {
-    de.forEach((B) => {
-      i.component(B.name, B);
+        }, 8, ["default-openeds"])) : N("", !0)
+      ], 64));
+    };
+  }
+}, de = [re], ve = {
+  install(d) {
+    de.forEach((R) => {
+      d.component("vueEleNavPlus", R);
     });
   }
 };
-typeof window < "u" && window.Vue && window.Vue.use(ue);
+typeof window < "u" && window.Vue && window.Vue.use(ve);
 export {
-  ue as default
+  ve as default
 };
