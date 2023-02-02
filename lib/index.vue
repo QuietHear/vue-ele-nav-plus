@@ -4,13 +4,13 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-01-31 16:25:27
+ * @LastEditTime: 2023-02-01 18:24:28
 */
 <template>
   <div class="vue-ele-nav-plus-box">
     <el-scrollbar>
-      <el-menu :default-openeds="opens" class="vue-ele-nav-plus" :collapse="isCollapse" :ellipsis="false"
-        v-bind="$attrs" v-if="init">
+      <el-menu class="vue-ele-nav-plus" :default-openeds="$attrs['mode'] !== 'horizontal' ? opens : []"
+        :collapse="isCollapse" :ellipsis="false" v-bind="$attrs" v-if="init">
         <!-- 一级菜单 -->
         <template v-for="item1 in navInformation" :key="item1.index">
           <el-sub-menu :class="item1.active ? 'replace-active' : ''" popper-class="vue-ele-nav-plus-hor"
@@ -248,16 +248,22 @@ const opens = ref([]);
 // 展示菜单
 const navInformation = ref([]);
 watch(
+  () => props.onlyShowFirst,
+  () => {
+    initMenu();
+  }
+);
+watch(
   () => props.menu,
   () => {
     initMenu();
   }
 );
 // 深拷贝
-const deepCopy = (obj, num = 1) => {
+const deepCopy = (obj) => {
   let result = obj instanceof Array ? [] : {};
   for (let key in obj) {
-    result[key] = typeof obj[key] === 'object' ? deepCopy(obj[key], num + 1) : obj[key];
+    result[key] = typeof obj[key] === 'object' ? deepCopy(obj[key]) : obj[key];
   }
   return result;
 };
