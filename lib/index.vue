@@ -4,7 +4,7 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-02-01 18:24:28
+ * @LastEditTime: 2023-02-03 16:14:07
 */
 <template>
   <div class="vue-ele-nav-plus-box">
@@ -13,8 +13,9 @@
         :collapse="isCollapse" :ellipsis="false" v-bind="$attrs" v-if="init">
         <!-- 一级菜单 -->
         <template v-for="item1 in navInformation" :key="item1.index">
-          <el-sub-menu :class="item1.active ? 'replace-active' : ''" popper-class="vue-ele-nav-plus-hor"
-            :index="item1.index" v-if="item1.children.length > 0">
+          <el-sub-menu :class="item1.active ? 'replace-active' : ''"
+            :popper-class="'vue-ele-nav-plus-poper' + (popDark ? ' dark' : '')" :index="item1.index"
+            v-if="item1.children.length > 0">
             <template #title>
               <div class="parent-title" @click="
                 (!clickParentJump && item1.showSelf !== true) ||
@@ -232,6 +233,11 @@ const props = defineProps({
         icon: "Expand"
       };
     }
+  },
+  // 浮窗深色化
+  popDark: {
+    type: Boolean,
+    default: false,
   }
 });
 const router = useRouter();

@@ -18,27 +18,41 @@
 
 
 ## 0. 可改动样式变量
-* 在root中！！！
+> 当前dom层级的vue-ele-nav-plus-box中！！！
 
-* `--ele-nav-menu-second-height`：40px;-->浮窗菜单高度
+* `--ele-nav-menu-height`：60px;-->嵌入DOM中的菜单高度
 
 * `--ele-nav-text`：#303133;-->菜单字体颜色
 
-* `--ele-nav-menu-bg2`：transparent;-->二级菜单背景色，建议使用菜单背景色计算darken(x, 3%)
+* `--ele-nav-bg`：#fff;-->一级菜单背景色
 
-* `--ele-nav-menu-bg3`：transparent;-->三级菜单背景色，建议使用菜单背景色计算darken(x, 6%)
+* `--ele-nav-menu-bg2`：transparent;-->二级菜单背景色，建议使用菜单背景色less函数计算darken(x, 3%)
 
-* `--ele-nav-menu-bg4`：transparent;-->四级菜单背景色，建议使用菜单背景色计算darken(x, 9%)
+* `--ele-nav-menu-bg3`：transparent;-->三级菜单背景色，建议使用菜单背景色less函数计算darken(x, 6%)
 
-* `--ele-nav-menu-bg-hover`：#fef5e6;-->触摸菜单颜色，建议使用菜单背景色计算lighten(x, 5%)
+* `--ele-nav-menu-bg4`：transparent;-->四级菜单背景色，建议使用菜单背景色less函数计算darken(x, 9%)
+
+* `--ele-nav-menu-bg-hover`：#fef5e6;-->触摸菜单颜色，建议使用菜单背景色less函数计算lighten(x, 5%)
 
 * `--ele-nav-menu-active`：var(--el-color-primary);-->点亮菜单颜色,默认取element主色
 
-* 非root中！！！
+* `--ele-nav-colla-bg`：rgba(255, 255, 255, .2);-->收缩按钮背景色
 
-* `--ele-nav-bg`：#fff;-->菜单背景色
+> body中的vue-ele-nav-plus-poper中！！！
 
-* `--ele-nav-menu-height`：60px;-->嵌入DOM中的菜单高度
+* `--ele-nav-menu-second-height`：40px;-->浮窗菜单高度
+
+* `--ele-nav-text`：#303133;-->浮窗菜单字体颜色
+
+* `--ele-nav-menu-bg2`：transparent;-->二级菜单背景色，建议使用菜单背景色less函数计算darken(x, 3%)
+
+* `--ele-nav-menu-bg3`：transparent;-->三级菜单背景色，建议使用菜单背景色less函数计算darken(x, 6%)
+
+* `--ele-nav-menu-bg4`：transparent;-->四级菜单背景色，建议使用菜单背景色less函数计算darken(x, 9%)
+
+* `--ele-nav-menu-bg-hover`：#fef5e6;-->触摸菜单颜色，建议使用菜单背景色less函数计算lighten(x, 5%)
+
+* `--ele-nav-menu-active`：var(--el-color-primary);-->点亮菜单颜色,默认取element主色
 
 
 ## 1. 参数
@@ -111,6 +125,12 @@
 	// el，此时为el-icon,icon为图标组件名（！！！未内置，确保当前页面或全局已引入）
 	// iconfont，此时为iconfont，icon为图标去掉icon-后部分（！！！未内置，确保当前页面或全局已引入）
 	// 其他，此时为本地自定义图标，type为class，icon为内容
+>
+
+* `popDark`：弹窗深色化-->Boolean;非必传;默认*false*
+>
+	无实际变化，只会给浮窗添加'dark'class
+	为了应对非html.dark时组件仍深色的情况
 >
 
 * `@collapseChange`：纵向菜单触发收缩时触发-->第一个参数返回当前是否收缩true/false

@@ -4,22 +4,23 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-01-30 18:20:51
+ * @LastEditTime: 2023-02-03 16:19:45
 */
-:root {
-  --ele-nav-menu-second-height: 40px;
-  --ele-nav-text              : #303133;
-  --ele-nav-menu-bg2          : transparent;
-  --ele-nav-menu-bg3          : transparent;
-  --ele-nav-menu-bg4          : transparent;
-  --ele-nav-menu-bg-hover     : #fef5e6;
-  --ele-nav-menu-active       : var(--el-color-primary);
+@mixin mixin {
+  --ele-nav-menu-bg-hover: #fef5e6;
+  --ele-nav-text         : #303133;
+  --ele-nav-menu-bg2     : transparent;
+  --ele-nav-menu-bg3     : transparent;
+  --ele-nav-menu-bg4     : transparent;
+  --ele-nav-menu-active  : var(--el-color-primary);
 }
 
 // 滚动盒子
 .vue-ele-nav-plus-box {
+  @include mixin;
   --ele-nav-bg         : #fff;
   --ele-nav-menu-height: 60px;
+  --ele-nav-colla-bg   : rgb(162 173 184 / 61%);
   position             : relative;
   height               : 100%;
 
@@ -35,7 +36,7 @@
     font-size      : 24px;
     width          : 30px;
     height         : 30px;
-    background     : rgba(255, 255, 255, .2);
+    background     : var(--ele-nav-colla-bg);
     z-index        : 3;
     border-radius  : 4px 0 0 4px;
     cursor         : pointer;
@@ -189,8 +190,10 @@
 }
 
 // 弹出菜单样式
-.vue-ele-nav-plus-hor {
-  border: 0 !important;
+.vue-ele-nav-plus-poper {
+  @include mixin;
+  --ele-nav-menu-second-height: 40px;
+  border                      : 0 !important;
 
   &>.el-menu {
     background-color: var(--ele-nav-menu-bg2);
