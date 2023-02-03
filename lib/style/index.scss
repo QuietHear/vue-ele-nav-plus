@@ -4,7 +4,7 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-02-03 16:19:45
+ * @LastEditTime: 2023-02-03 17:49:19
 */
 @mixin mixin {
   --ele-nav-menu-bg-hover: #fef5e6;
@@ -45,7 +45,7 @@
 
 // 内容组件
 .vue-ele-nav-plus {
-  background-color: var(--ele-nav-bg);
+  background-color: var(--ele-nav-bg) !important;
   width           : 100%;
 
   // 纵向
