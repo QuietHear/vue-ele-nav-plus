@@ -4,11 +4,11 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-02-03 16:14:07
+ * @LastEditTime: 2023-02-09 14:31:54
 */
 <template>
   <div class="vue-ele-nav-plus-box">
-    <el-scrollbar>
+    <el-scrollbar ref="scroll">
       <el-menu class="vue-ele-nav-plus" :default-openeds="$attrs['mode'] !== 'horizontal' ? opens : []"
         :collapse="isCollapse" :ellipsis="false" v-bind="$attrs" v-if="init">
         <!-- 一级菜单 -->
@@ -169,7 +169,7 @@
   </div>
 </template>
 <script setup>
-import { ref, watch, onMounted, onBeforeUnmount, useAttrs } from "vue";
+import { ref, watch, nextTick, onMounted, onBeforeUnmount, useAttrs } from "vue";
 import { useRoute, useRouter } from "vue-router";
 const emit = defineEmits(["collapseChange"]);
 const props = defineProps({
@@ -243,6 +243,7 @@ const props = defineProps({
 const router = useRouter();
 const route = useRoute();
 const attrs = useAttrs();
+const scroll = ref(null);
 // 完整菜单
 let routeMsg = [];
 // 平级数据
@@ -351,6 +352,11 @@ watch(
 const routeChange = async () => {
   shutMenu(navInformation.value);
   let nowRoute = searchRoute(route.name);
+  if (attrs.mode === 'horizontal') {
+    nextTick(() => {
+      scroll.value.setScrollLeft(nowRoute.index.split("-")[0]* document.getElementsByClassName('vue-ele-nav-plus')[0].getElementsByTagName('li')[0].clientWidth);
+    })
+  }
   // 只点亮第一层的菜单子元素默认都点亮对应第一层父元素
   if (props.onlyShowFirst) {
     let parentIndex = nowRoute.index.split("-")[0];

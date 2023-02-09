@@ -1,6 +1,6 @@
-import { useAttrs as en, ref as F, watch as I, onMounted as on, onBeforeUnmount as cn, resolveComponent as N, openBlock as n, createElementBlock as a, createVNode as ln, withCtx as y, createBlock as r, mergeProps as s, unref as _, Fragment as f, renderList as V, normalizeClass as $, createElementVNode as S, resolveDynamicComponent as k, normalizeProps as p, toDisplayString as h, createCommentVNode as C, createTextVNode as b } from "vue";
-import { useRouter as tn, useRoute as an } from "vue-router";
-const sn = { class: "vue-ele-nav-plus-box" }, un = ["onClick"], rn = ["onClick"], dn = ["onClick"], yn = {
+import { useAttrs as on, ref as N, watch as I, nextTick as cn, onMounted as ln, onBeforeUnmount as tn, resolveComponent as S, openBlock as n, createElementBlock as a, createVNode as an, withCtx as y, createBlock as r, mergeProps as s, unref as m, Fragment as f, renderList as L, normalizeClass as $, createElementVNode as b, resolveDynamicComponent as k, normalizeProps as p, toDisplayString as h, createCommentVNode as C, createTextVNode as D } from "vue";
+import { useRouter as sn, useRoute as un } from "vue-router";
+const rn = { class: "vue-ele-nav-plus-box" }, dn = ["onClick"], yn = ["onClick"], fn = ["onClick"], kn = {
   __name: "index",
   props: {
     menu: {
@@ -55,144 +55,149 @@ const sn = { class: "vue-ele-nav-plus-box" }, un = ["onClick"], rn = ["onClick"]
     }
   },
   emits: ["collapseChange"],
-  setup(e, { expose: L, emit: T }) {
-    const v = e, m = tn(), W = an(), U = en();
-    let D = [], q = [];
-    const J = F(!1), G = F([]), x = F([]);
+  setup(e, { expose: V, emit: U }) {
+    const v = e, nn = sn(), W = un(), J = on(), q = N(null);
+    let P = [], G = [];
+    const A = N(!1), H = N([]), w = N([]);
     I(
       () => v.onlyShowFirst,
       () => {
-        A();
+        T();
       }
     ), I(
       () => v.menu,
       () => {
-        A();
+        T();
       }
     );
-    const P = (t) => {
-      let i = t instanceof Array ? [] : {};
-      for (let u in t)
-        i[u] = typeof t[u] == "object" ? P(t[u]) : t[u];
+    const R = (l) => {
+      let i = l instanceof Array ? [] : {};
+      for (let u in l)
+        i[u] = typeof l[u] == "object" ? R(l[u]) : l[u];
       return i;
-    }, A = async () => {
-      if (J.value = !1, D = P(v.menu), D.length > 0) {
-        H(D), x.value = P(D), Q(x.value);
+    }, T = async () => {
+      if (A.value = !1, P = R(v.menu), P.length > 0) {
+        K(P), w.value = R(P), X(w.value);
         let i = O(W.name).index;
-        K(i), J.value = !0, X();
+        Q(i), A.value = !0, Y();
       }
-    }, H = (t, i) => {
-      t.forEach((u, B) => {
-        u.index = `${i !== void 0 ? i + "-" : ""}${B}`, u.active = !1, u.icon = u.icon || void 0, u.children && u.children.length > 0 ? H(u.children, u.index) : u.children = [], q.push(P(u));
+    }, K = (l, i) => {
+      l.forEach((u, B) => {
+        u.index = `${i !== void 0 ? i + "-" : ""}${B}`, u.active = !1, u.icon = u.icon || void 0, u.children && u.children.length > 0 ? K(u.children, u.index) : u.children = [], G.push(R(u));
       });
-    }, K = (t, i = 0) => {
-      const u = t.split("-"), B = u.slice(0, i + 1).join("-");
-      G.value.push(B), i += 1, i < u.length - 1 && K(t, i);
-    }, Q = (t) => {
-      for (let i = 0; i < t.length; i++)
-        t[i].show !== !1 ? !v.onlyShowFirst && t[i].children && t[i].children.length > 0 ? Q(t[i].children) : t[i].children = [] : (t.splice(i, 1), i -= 1);
+    }, Q = (l, i = 0) => {
+      const u = l.split("-"), B = u.slice(0, i + 1).join("-");
+      H.value.push(B), i += 1, i < u.length - 1 && Q(l, i);
+    }, X = (l) => {
+      for (let i = 0; i < l.length; i++)
+        l[i].show !== !1 ? !v.onlyShowFirst && l[i].children && l[i].children.length > 0 ? X(l[i].children) : l[i].children = [] : (l.splice(i, 1), i -= 1);
     };
     I(
       W,
       () => {
-        X();
+        Y();
       }
     );
-    const X = async () => {
-      Y(x.value);
-      let t = O(W.name);
-      if (v.onlyShowFirst) {
-        let i = t.index.split("-")[0];
-        x.value.filter((u) => u.index === i).length > 0 && R(x.value, i);
-      } else if (t.markName) {
-        let i = O(t.markName);
-        R(x.value, i.index);
+    const Y = async () => {
+      Z(w.value);
+      let l = O(W.name);
+      if (J.mode === "horizontal" && cn(() => {
+        q.value.setScrollLeft(l.index.split("-")[0] * document.getElementsByClassName("vue-ele-nav-plus")[0].getElementsByTagName("li")[0].clientWidth);
+      }), v.onlyShowFirst) {
+        let i = l.index.split("-")[0];
+        w.value.filter((u) => u.index === i).length > 0 && F(w.value, i);
+      } else if (l.markName) {
+        let i = O(l.markName);
+        F(w.value, i.index);
       } else
-        R(x.value, t.index);
-    }, Y = (t) => {
-      t.forEach((i) => {
-        i.active = !1, i.children.length > 0 && Y(i.children);
+        F(w.value, l.index);
+    }, Z = (l) => {
+      l.forEach((i) => {
+        i.active = !1, i.children.length > 0 && Z(i.children);
       });
-    }, R = (t, i, u = 0) => {
-      const B = i.split("-"), E = B.slice(0, u + 1).join("-");
-      let z = t.filter((j) => j.index === E);
-      z.length > 0 && (z[0].active = !0, u += 1, u < B.length && R(z[0].children, i, u));
-    }, O = (t) => q.filter((i) => i.name === t)[0], g = (t) => {
-      m.push({ name: t.name });
+    }, F = (l, i, u = 0) => {
+      const B = i.split("-"), M = B.slice(0, u + 1).join("-");
+      let z = l.filter((j) => j.index === M);
+      z.length > 0 && (z[0].active = !0, u += 1, u < B.length && F(z[0].children, i, u));
+    }, O = (l) => G.filter((i) => i.name === l)[0], g = (l) => {
+      nn.push({ name: l.name });
     };
-    A();
-    let w = F(!1);
-    v.autoCollapse || (w.value = v.collapse), U.mode !== "horizontal" && I(
+    T();
+    let x = N(!1);
+    v.autoCollapse || (x.value = v.collapse), J.mode !== "horizontal" && I(
       () => v.autoCollapse,
       () => {
-        v.autoCollapse ? (M(), window.addEventListener("resize", M)) : (w.value = v.collapse, window.removeEventListener("resize", M));
+        v.autoCollapse ? (E(), window.addEventListener("resize", E)) : (x.value = v.collapse, window.removeEventListener("resize", E));
       }
     );
-    const M = () => {
-      v.collapseMaxWidth > 0 && (w.value = document.body.clientWidth < v.collapseMaxWidth), T("collapseChange", w.value);
-    }, Z = () => {
-      w.value = !w.value, T("collapseChange", w.value);
-    }, nn = () => w.value;
-    return on(() => {
-      U.mode !== "horizontal" && v.autoCollapse && (M(), window.addEventListener("resize", M));
-    }), cn(() => {
-      window.removeEventListener("resize", M);
-    }), L({ manualChange: Z, getNowCollapse: nn }), (t, i) => {
-      const u = N("el-icon"), B = N("el-menu-item"), E = N("el-sub-menu"), z = N("el-menu"), j = N("el-scrollbar");
-      return n(), a("div", sn, [
-        ln(j, null, {
+    const E = () => {
+      v.collapseMaxWidth > 0 && (x.value = document.body.clientWidth < v.collapseMaxWidth), U("collapseChange", x.value);
+    }, _ = () => {
+      x.value = !x.value, U("collapseChange", x.value);
+    }, en = () => x.value;
+    return ln(() => {
+      J.mode !== "horizontal" && v.autoCollapse && (E(), window.addEventListener("resize", E));
+    }), tn(() => {
+      window.removeEventListener("resize", E);
+    }), V({ manualChange: _, getNowCollapse: en }), (l, i) => {
+      const u = S("el-icon"), B = S("el-menu-item"), M = S("el-sub-menu"), z = S("el-menu"), j = S("el-scrollbar");
+      return n(), a("div", rn, [
+        an(j, {
+          ref_key: "scroll",
+          ref: q
+        }, {
           default: y(() => [
-            J.value ? (n(), r(z, s({
+            A.value ? (n(), r(z, s({
               key: 0,
               class: "vue-ele-nav-plus",
-              "default-openeds": t.$attrs.mode !== "horizontal" ? G.value : [],
-              collapse: _(w),
+              "default-openeds": l.$attrs.mode !== "horizontal" ? H.value : [],
+              collapse: m(x),
               ellipsis: !1
-            }, t.$attrs), {
+            }, l.$attrs), {
               default: y(() => [
-                (n(!0), a(f, null, V(x.value, (l) => (n(), a(f, {
-                  key: l.index
+                (n(!0), a(f, null, L(w.value, (t) => (n(), a(f, {
+                  key: t.index
                 }, [
-                  l.children.length > 0 ? (n(), r(E, {
+                  t.children.length > 0 ? (n(), r(M, {
                     key: 0,
-                    class: $(l.active ? "replace-active" : ""),
+                    class: $(t.active ? "replace-active" : ""),
                     "popper-class": "vue-ele-nav-plus-poper" + (e.popDark ? " dark" : ""),
-                    index: l.index
+                    index: t.index
                   }, {
                     title: y(() => [
-                      S("div", {
+                      b("div", {
                         class: "parent-title",
-                        onClick: (o) => !e.clickParentJump && l.showSelf !== !0 || g(l)
+                        onClick: (o) => !e.clickParentJump && t.showSelf !== !0 || g(t)
                       }, [
-                        l.icon && (l.icon.icon || l.icon.type) ? (n(), a(f, { key: 0 }, [
-                          l.icon.type === "custom" ? (n(), r(k(l.icon.icon), p(s({ key: 0 }, l.icon.attrs)), null, 16)) : l.icon.type === "el" ? (n(), r(u, p(s({ key: 1 }, l.icon.attrs)), {
+                        t.icon && (t.icon.icon || t.icon.type) ? (n(), a(f, { key: 0 }, [
+                          t.icon.type === "custom" ? (n(), r(k(t.icon.icon), p(s({ key: 0 }, t.icon.attrs)), null, 16)) : t.icon.type === "el" ? (n(), r(u, p(s({ key: 1 }, t.icon.attrs)), {
                             default: y(() => [
-                              (n(), r(k(l.icon.icon)))
+                              (n(), r(k(t.icon.icon)))
                             ]),
                             _: 2
-                          }, 1040)) : l.icon.type === "iconfont" ? (n(), a("i", s({
+                          }, 1040)) : t.icon.type === "iconfont" ? (n(), a("i", s({
                             key: 2,
-                            class: ["icon iconfont", "icon-" + l.icon.icon]
-                          }, l.icon.attrs), null, 16)) : (n(), a("i", s({
+                            class: ["icon iconfont", "icon-" + t.icon.icon]
+                          }, t.icon.attrs), null, 16)) : (n(), a("i", s({
                             key: 3,
-                            class: l.icon.type
-                          }, l.icon.attrs), h(l.icon.icon), 17))
+                            class: t.icon.type
+                          }, t.icon.attrs), h(t.icon.icon), 17))
                         ], 64)) : C("", !0),
-                        S("span", null, h(e.i18n ? t.$t(l.title) : l.title), 1)
-                      ], 8, un)
+                        b("span", null, h(e.i18n ? l.$t(t.title) : t.title), 1)
+                      ], 8, dn)
                     ]),
                     default: y(() => [
-                      (n(!0), a(f, null, V(l.children, (o) => (n(), a(f, {
+                      (n(!0), a(f, null, L(t.children, (o) => (n(), a(f, {
                         key: o.index
                       }, [
-                        o.children.length > 0 ? (n(), r(E, {
+                        o.children.length > 0 ? (n(), r(M, {
                           key: 0,
                           class: $(o.active ? "replace-active-child" : ""),
                           "popper-class": "second",
                           index: o.index
                         }, {
                           title: y(() => [
-                            S("div", {
+                            b("div", {
                               class: "parent-title",
                               onClick: (c) => !e.clickParentJump && o.showSelf !== !0 || g(o)
                             }, [
@@ -210,21 +215,21 @@ const sn = { class: "vue-ele-nav-plus-box" }, un = ["onClick"], rn = ["onClick"]
                                   class: o.icon.type
                                 }, o.icon.attrs), h(o.icon.icon), 17))
                               ], 64)) : C("", !0),
-                              b(" " + h(e.i18n ? t.$t(o.title) : o.title), 1)
-                            ], 8, rn)
+                              D(" " + h(e.i18n ? l.$t(o.title) : o.title), 1)
+                            ], 8, yn)
                           ]),
                           default: y(() => [
-                            (n(!0), a(f, null, V(o.children, (c) => (n(), a(f, {
+                            (n(!0), a(f, null, L(o.children, (c) => (n(), a(f, {
                               key: c.index
                             }, [
-                              c.children.length > 0 ? (n(), r(E, {
+                              c.children.length > 0 ? (n(), r(M, {
                                 key: 0,
                                 class: $(c.active ? "replace-active-child" : ""),
                                 "popper-class": "third",
                                 index: c.index
                               }, {
                                 title: y(() => [
-                                  S("div", {
+                                  b("div", {
                                     class: "parent-title",
                                     onClick: (d) => !e.clickParentJump && c.showSelf !== !0 || g(c)
                                   }, [
@@ -242,15 +247,15 @@ const sn = { class: "vue-ele-nav-plus-box" }, un = ["onClick"], rn = ["onClick"]
                                         class: c.icon.type
                                       }, c.icon.attrs), h(c.icon.icon), 17))
                                     ], 64)) : C("", !0),
-                                    b(" " + h(e.i18n ? t.$t(c.title) : c.title), 1)
-                                  ], 8, dn)
+                                    D(" " + h(e.i18n ? l.$t(c.title) : c.title), 1)
+                                  ], 8, fn)
                                 ]),
                                 default: y(() => [
-                                  (n(!0), a(f, null, V(c.children, (d) => (n(), r(B, {
+                                  (n(!0), a(f, null, L(c.children, (d) => (n(), r(B, {
                                     key: d.index,
                                     class: $(d.active ? "replace-active-child" : ""),
                                     index: d.index,
-                                    onClick: (pn) => g(d)
+                                    onClick: (vn) => g(d)
                                   }, {
                                     default: y(() => [
                                       d.icon && (d.icon.icon || d.icon.type) ? (n(), a(f, { key: 0 }, [
@@ -267,7 +272,7 @@ const sn = { class: "vue-ele-nav-plus-box" }, un = ["onClick"], rn = ["onClick"]
                                           class: d.icon.type
                                         }, d.icon.attrs), h(d.icon.icon), 17))
                                       ], 64)) : C("", !0),
-                                      b(" " + h(e.i18n ? t.$t(d.title) : d.title), 1)
+                                      D(" " + h(e.i18n ? l.$t(d.title) : d.title), 1)
                                     ]),
                                     _: 2
                                   }, 1032, ["class", "index", "onClick"]))), 128))
@@ -294,7 +299,7 @@ const sn = { class: "vue-ele-nav-plus-box" }, un = ["onClick"], rn = ["onClick"]
                                       class: c.icon.type
                                     }, c.icon.attrs), h(c.icon.icon), 17))
                                   ], 64)) : C("", !0),
-                                  b(" " + h(e.i18n ? t.$t(c.title) : c.title), 1)
+                                  D(" " + h(e.i18n ? l.$t(c.title) : c.title), 1)
                                 ]),
                                 _: 2
                               }, 1032, ["class", "index", "onClick"]))
@@ -322,7 +327,7 @@ const sn = { class: "vue-ele-nav-plus-box" }, un = ["onClick"], rn = ["onClick"]
                                 class: o.icon.type
                               }, o.icon.attrs), h(o.icon.icon), 17))
                             ], 64)) : C("", !0),
-                            b(" " + h(e.i18n ? t.$t(o.title) : o.title), 1)
+                            D(" " + h(e.i18n ? l.$t(o.title) : o.title), 1)
                           ]),
                           _: 2
                         }, 1032, ["class", "index", "onClick"]))
@@ -331,26 +336,26 @@ const sn = { class: "vue-ele-nav-plus-box" }, un = ["onClick"], rn = ["onClick"]
                     _: 2
                   }, 1032, ["class", "popper-class", "index"])) : (n(), r(B, {
                     key: 1,
-                    class: $(l.active ? "replace-active" : ""),
-                    index: l.index,
-                    onClick: (o) => g(l)
+                    class: $(t.active ? "replace-active" : ""),
+                    index: t.index,
+                    onClick: (o) => g(t)
                   }, {
                     default: y(() => [
-                      l.icon && (l.icon.icon || l.icon.type) ? (n(), a(f, { key: 0 }, [
-                        l.icon.type === "custom" ? (n(), r(k(l.icon.icon), p(s({ key: 0 }, l.icon.attrs)), null, 16)) : l.icon.type === "el" ? (n(), r(u, p(s({ key: 1 }, l.icon.attrs)), {
+                      t.icon && (t.icon.icon || t.icon.type) ? (n(), a(f, { key: 0 }, [
+                        t.icon.type === "custom" ? (n(), r(k(t.icon.icon), p(s({ key: 0 }, t.icon.attrs)), null, 16)) : t.icon.type === "el" ? (n(), r(u, p(s({ key: 1 }, t.icon.attrs)), {
                           default: y(() => [
-                            (n(), r(k(l.icon.icon)))
+                            (n(), r(k(t.icon.icon)))
                           ]),
                           _: 2
-                        }, 1040)) : l.icon.type === "iconfont" ? (n(), a("i", s({
+                        }, 1040)) : t.icon.type === "iconfont" ? (n(), a("i", s({
                           key: 2,
-                          class: ["icon iconfont", "icon-" + l.icon.icon]
-                        }, l.icon.attrs), null, 16)) : (n(), a("i", s({
+                          class: ["icon iconfont", "icon-" + t.icon.icon]
+                        }, t.icon.attrs), null, 16)) : (n(), a("i", s({
                           key: 3,
-                          class: l.icon.type
-                        }, l.icon.attrs), h(l.icon.icon), 17))
+                          class: t.icon.type
+                        }, t.icon.attrs), h(t.icon.icon), 17))
                       ], 64)) : C("", !0),
-                      S("span", null, h(e.i18n ? t.$t(l.title) : l.title), 1)
+                      b("span", null, h(e.i18n ? l.$t(t.title) : t.title), 1)
                     ]),
                     _: 2
                   }, 1032, ["class", "index", "onClick"]))
@@ -360,13 +365,13 @@ const sn = { class: "vue-ele-nav-plus-box" }, un = ["onClick"], rn = ["onClick"]
             }, 16, ["default-openeds", "collapse"])) : C("", !0)
           ]),
           _: 1
-        }),
-        t.$attrs.mode !== "horizontal" && e.collapseMaxWidth > 0 && e.showCollapseBtn ? (n(), a("div", {
+        }, 512),
+        l.$attrs.mode !== "horizontal" && e.collapseMaxWidth > 0 && e.showCollapseBtn ? (n(), a("div", {
           key: 0,
           class: "collapse-btn",
-          onClick: Z
+          onClick: _
         }, [
-          _(w) ? (n(), a(f, { key: 0 }, [
+          m(x) ? (n(), a(f, { key: 0 }, [
             e.closeBtn && (e.closeBtn.icon || e.closeBtn.type) ? (n(), a(f, { key: 0 }, [
               e.closeBtn.type === "custom" ? (n(), r(k(e.closeBtn.icon), s({
                 key: 0,
@@ -407,14 +412,14 @@ const sn = { class: "vue-ele-nav-plus-box" }, un = ["onClick"], rn = ["onClick"]
       ]);
     };
   }
-}, fn = [yn], kn = {
+}, pn = [kn], hn = {
   install(e) {
-    fn.forEach((L) => {
-      e.component("vueEleNavPlus", L);
+    pn.forEach((V) => {
+      e.component("vueEleNavPlus", V);
     });
   }
 };
-typeof window < "u" && window.Vue && window.Vue.use(kn);
+typeof window < "u" && window.Vue && window.Vue.use(hn);
 export {
-  kn as default
+  hn as default
 };
