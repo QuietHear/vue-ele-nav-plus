@@ -4,7 +4,7 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-02-09 14:31:54
+ * @LastEditTime: 2023-02-20 14:47:39
 */
 <template>
   <div class="vue-ele-nav-plus-box">
@@ -169,8 +169,6 @@
   </div>
 </template>
 <script setup>
-import { ref, watch, nextTick, onMounted, onBeforeUnmount, useAttrs } from "vue";
-import { useRoute, useRouter } from "vue-router";
 const emit = defineEmits(["collapseChange"]);
 const props = defineProps({
   // 菜单集合数据
