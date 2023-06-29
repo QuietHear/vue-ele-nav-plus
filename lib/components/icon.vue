@@ -4,10 +4,10 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-06-29 14:52:19
+ * @LastEditTime: 2023-06-29 17:04:43
 */
 <template>
-  <component class="menu-icon" :is="iconObj.icon" v-bind="iconObj.attrs" v-if="iconObj.type === 'custom'" />
+  <component :is="iconObj.icon" v-bind="iconObj.attrs" v-if="iconObj.type === 'custom'" />
   <el-icon v-bind="iconObj.attrs" v-else-if="iconObj.type === 'el'">
     <component :is="iconObj.icon" />
   </el-icon>
