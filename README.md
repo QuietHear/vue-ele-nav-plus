@@ -75,7 +75,6 @@
 		// 其他，此时为本地自定义图标，type为class，icon为内容
 		//
 		"title":'' // 菜单名
-		"showSelf":false // 当前为父级菜单时，点击是否跳转，只有设置为true才跳转
 		"show":true // 是否展示在菜单中，只有设置为false才不展示
 		"markName":'' // 次菜单不点亮，代替点亮的菜单name
 		"children":[] // 子菜单，从顶层开始最深支持4层
@@ -91,21 +90,7 @@
 
 * `i18n`：标题是否开启国际化-->Boolean;非必传;默认*false*
 
-* `clickParentJump`：点击父级菜单是否进行跳转-->Boolean;非必传;默认*false*
->
-	如果父级菜单设置了showSelf:true，则无视此全局设置
->
-
-* `autoCollapse`：纵向时自动根据屏幕触收缩-->Boolean;非必传;默认*true*
->
-	会监听该参数：
-	若为true，会自动计算当前的收缩状态，且会触发@collapseChange；
-	若为false，则会取传入的collapse值
->
-
 * `showCollapsebtn`：纵向时是否展示收缩按钮-->Boolean;非必传;默认*true*
-
-* `collapseMaxWidth`：纵向时未收缩时屏幕最大像素-->Number;非必传;默认*960*
 
 * `openBtn`：展开时的按钮-->Object;非必传;默认*{type:'el',icon:'Fold'}*
 >
@@ -133,15 +118,9 @@
 	为了应对非html.dark时组件仍深色的情况
 >
 
-* `@collapseChange`：纵向菜单触发收缩时触发-->第一个参数返回当前是否收缩true/false
+* `@collapseChange`：点收缩按钮时触发-->无返回
 
 * 其余参数与官网ele-menu相同
-
-
-## 2. 方法
-* `manualChange`：手动触发纵向菜单收缩-->会触发@collapseChange
-
-* `getNowCollapse`：获取当前纵向菜单是否收缩
 
 
 ## 更多vue3组件
