@@ -4,7 +4,7 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-06-29 15:32:18
+ * @LastEditTime: 2023-07-14 11:06:26
 */
 <template>
   <div class="vue-ele-nav-plus-box">
@@ -68,7 +68,9 @@
           <!-- 一级子菜单 -->
           <el-menu-item class="first-menu" :index="item1.index" @click="menuItemClick" v-else>
             <Icon :iconObj="item1.icon" v-if="item1.icon && (item1.icon.icon || item1.icon.type)" />
-            <span>{{ i18n ? $t(item1.title) : item1.title }}</span>
+            <template #title>
+              <span>{{ i18n ? $t(item1.title) : item1.title }}</span>
+            </template>
           </el-menu-item>
         </template>
       </el-menu>
