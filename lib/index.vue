@@ -4,7 +4,7 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-07-14 11:06:26
+ * @LastEditTime: 2023-08-09 17:44:22
 */
 <template>
   <div class="vue-ele-nav-plus-box">
@@ -249,9 +249,17 @@ const searchRoute = (sq) => {
 };
 // 点击事件
 const menuItemClick = (item) => {
-  router.push({
-    name: searchRoute(item.index).name
-  });
+  const res = searchRoute(item.index);
+  console.log(res);
+  if (res.link) {
+    window.open(res.link);
+    window.location.reload();
+  }
+  else {
+    router.push({
+      name: searchRoute(item.index).name
+    });
+  }
 };
 initMenu();
 </script>
