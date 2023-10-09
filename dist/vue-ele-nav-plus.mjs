@@ -1,4 +1,4 @@
-import { resolveComponent as v, openBlock as o, createBlock as c, resolveDynamicComponent as A, normalizeProps as L, mergeProps as j, withCtx as s, createElementBlock as r, toDisplayString as p, ref as T, watch as S, createVNode as q, unref as G, Fragment as y, renderList as D, createElementVNode as x, createCommentVNode as d, createTextVNode as O } from "vue";
+import { resolveComponent as j, openBlock as e, createBlock as t, resolveDynamicComponent as z, normalizeProps as A, mergeProps as w, withCtx as s, createElementBlock as r, toDisplayString as p, ref as L, watch as V, createVNode as T, unref as q, Fragment as y, renderList as D, createElementVNode as O, createCommentVNode as d, createTextVNode as v } from "vue";
 import { useRouter as K, useRoute as Q } from "vue-router";
 const f = {
   __name: "icon",
@@ -8,21 +8,21 @@ const f = {
       requured: !0
     }
   },
-  setup(e) {
-    return (g, k) => {
-      const N = v("el-icon");
-      return e.iconObj.type === "custom" ? (o(), c(A(e.iconObj.icon), L(j({ key: 0 }, e.iconObj.attrs)), null, 16)) : e.iconObj.type === "el" ? (o(), c(N, L(j({ key: 1 }, e.iconObj.attrs)), {
+  setup(n) {
+    return (g, h) => {
+      const E = j("el-icon");
+      return n.iconObj.type === "custom" ? (e(), t(z(n.iconObj.icon), A(w({ key: 0 }, n.iconObj.attrs)), null, 16)) : n.iconObj.type === "el" ? (e(), t(E, A(w({ key: 1 }, n.iconObj.attrs)), {
         default: s(() => [
-          (o(), c(A(e.iconObj.icon)))
+          (e(), t(z(n.iconObj.icon)))
         ]),
         _: 1
-      }, 16)) : e.iconObj.type === "iconfont" ? (o(), r("i", j({
+      }, 16)) : n.iconObj.type === "iconfont" ? (e(), r("i", w({
         key: 2,
-        class: ["icon iconfont", "icon-" + e.iconObj.icon]
-      }, e.iconObj.attrs), null, 16)) : (o(), r("i", j({
+        class: ["icon iconfont", "icon-" + n.iconObj.icon]
+      }, n.iconObj.attrs), null, 16)) : (e(), r("i", w({
         key: 3,
-        class: e.iconObj.type
-      }, e.iconObj.attrs), p(e.iconObj.icon), 17));
+        class: n.iconObj.type
+      }, n.iconObj.attrs), p(n.iconObj.icon), 17));
     };
   }
 };
@@ -76,182 +76,182 @@ const U = { class: "vue-ele-nav-plus-box" }, W = { class: "parent-title" }, X = 
     }
   },
   emits: ["collapseChange"],
-  setup(e, { emit: g }) {
-    const k = e, N = K(), V = Q(), E = T("");
-    let w = [], M = [];
-    const F = T([]);
-    S(
-      () => k.onlyShowFirst,
+  setup(n, { emit: g }) {
+    const h = n, E = K(), b = Q(), N = L("");
+    let B = [], M = [];
+    const F = L([]);
+    V(
+      () => h.onlyShowFirst,
       () => {
         I();
       }
-    ), S(
-      () => k.menu,
+    ), V(
+      () => h.menu,
       () => {
         I();
       }
     );
-    const B = (n) => {
-      let l = n instanceof Array ? [] : {};
-      for (let t in n)
-        l[t] = typeof n[t] == "object" ? B(n[t]) : n[t];
-      return l;
+    const C = (o) => {
+      let u = o instanceof Array ? [] : {};
+      for (let l in o)
+        u[l] = typeof o[l] == "object" ? C(o[l]) : o[l];
+      return u;
     }, I = async () => {
-      w = B(k.menu), w.length > 0 && (P(w), F.value = B(w), R(F.value), z());
-    }, P = (n, l) => {
-      n.forEach((t, b) => {
-        t.index = `${l !== void 0 ? l + "-" : ""}${b}`, t.icon = t.icon || void 0, t.children && t.children.length > 0 ? P(t.children, t.index) : t.children = [], M.push(B(t));
+      B = C(h.menu), B.length > 0 && (P(B), F.value = C(B), h.onlyShowFirst && G(F.value), R());
+    }, P = (o, u) => {
+      o.forEach((l, x) => {
+        l.index = `${u !== void 0 ? u + "-" : ""}${x}`, l.icon = l.icon || void 0, l.children && l.children.length > 0 ? P(l.children, l.index) : l.children = [], M.push(C(l));
       });
-    }, R = (n) => {
-      for (let l = 0; l < n.length; l++)
-        n[l].show !== !1 ? !k.onlyShowFirst && n[l].children && n[l].children.length > 0 ? R(n[l].children) : n[l].children = [] : (n.splice(l, 1), l -= 1);
+    }, G = (o) => {
+      o.forEach((u) => {
+        u.children = [];
+      });
     };
-    S(
-      V,
+    V(
+      b,
       () => {
-        z();
+        R();
       }
     );
-    const z = () => {
-      var l;
-      const n = C(V.name);
-      E.value = "", n && (E.value = n.markName ? (l = C(n.markName)) == null ? void 0 : l.index : k.onlyShowFirst ? n.index.split("-")[0] : n.index);
-    }, C = (n) => M.filter((l) => l.index === n || l.name === n)[0], $ = (n) => {
-      const l = C(n.index);
-      l.link ? (window.open(l.link), window.location.reload()) : N.push({
-        name: C(n.index).name
+    const R = () => {
+      const o = S(b.meta && b.meta.markName ? b.meta.markName : b.name);
+      N.value = "", o && (N.value = h.onlyShowFirst ? o.index.split("-")[0] : o.index);
+    }, S = (o) => M.filter((u) => u.index === o || u.name === o)[0], $ = (o) => {
+      const u = S(o.index);
+      u.link ? (window.open(u.link), window.location.reload()) : E.push({
+        name: S(o.index).name
       });
     };
-    return I(), (n, l) => {
-      const t = v("el-menu-item"), b = v("el-sub-menu"), H = v("el-menu"), J = v("el-scrollbar");
-      return o(), r("div", U, [
-        q(J, null, {
+    return I(), (o, u) => {
+      const l = j("el-menu-item"), x = j("el-sub-menu"), H = j("el-menu"), J = j("el-scrollbar");
+      return e(), r("div", U, [
+        T(J, null, {
           default: s(() => [
-            q(H, j({
+            T(H, w({
               class: "vue-ele-nav-plus",
               ellipsis: !1,
-              "default-active": G(E),
-              collapse: e.collapse
-            }, n.$attrs), {
+              "default-active": q(N),
+              collapse: n.collapse
+            }, o.$attrs), {
               default: s(() => [
-                (o(!0), r(y, null, D(G(F), (i) => (o(), r(y, {
-                  key: i.index
+                (e(!0), r(y, null, D(q(F), (c) => (e(), r(y, {
+                  key: c.index
                 }, [
-                  i.children.length > 0 ? (o(), c(b, {
+                  c.children.length > 0 ? (e(), t(x, {
                     key: 0,
                     class: "first-menu",
-                    "popper-class": "vue-ele-nav-plus-poper" + (e.popDark ? " dark" : ""),
-                    index: i.index
+                    "popper-class": "vue-ele-nav-plus-poper" + (n.popDark ? " dark" : ""),
+                    index: c.index
                   }, {
                     title: s(() => [
-                      x("div", W, [
-                        i.icon && (i.icon.icon || i.icon.type) ? (o(), c(f, {
+                      O("div", W, [
+                        c.icon && (c.icon.icon || c.icon.type) ? (e(), t(f, {
                           key: 0,
-                          iconObj: i.icon
+                          iconObj: c.icon
                         }, null, 8, ["iconObj"])) : d("", !0),
-                        x("span", null, p(e.i18n ? n.$t(i.title) : i.title), 1)
+                        O("span", null, p(n.i18n ? o.$t(c.title) : c.title), 1)
                       ])
                     ]),
                     default: s(() => [
-                      (o(!0), r(y, null, D(i.children, (a) => (o(), r(y, {
-                        key: a.index
+                      (e(!0), r(y, null, D(c.children, (i) => (e(), r(y, {
+                        key: i.index
                       }, [
-                        a.children.length > 0 ? (o(), c(b, {
+                        i.children.length > 0 ? (e(), t(x, {
                           key: 0,
                           "popper-class": "second",
-                          index: a.index
+                          index: i.index
                         }, {
                           title: s(() => [
-                            x("div", X, [
-                              a.icon && (a.icon.icon || a.icon.type) ? (o(), c(f, {
+                            O("div", X, [
+                              i.icon && (i.icon.icon || i.icon.type) ? (e(), t(f, {
                                 key: 0,
-                                iconObj: a.icon
+                                iconObj: i.icon
                               }, null, 8, ["iconObj"])) : d("", !0),
-                              O(" " + p(e.i18n ? n.$t(a.title) : a.title), 1)
+                              v(" " + p(n.i18n ? o.$t(i.title) : i.title), 1)
                             ])
                           ]),
                           default: s(() => [
-                            (o(!0), r(y, null, D(a.children, (u) => (o(), r(y, {
-                              key: u.index
+                            (e(!0), r(y, null, D(i.children, (a) => (e(), r(y, {
+                              key: a.index
                             }, [
-                              u.children.length > 0 ? (o(), c(b, {
+                              a.children.length > 0 ? (e(), t(x, {
                                 key: 0,
                                 "popper-class": "third",
-                                index: u.index
+                                index: a.index
                               }, {
                                 title: s(() => [
-                                  x("div", Y, [
-                                    u.icon && (u.icon.icon || u.icon.type) ? (o(), c(f, {
+                                  O("div", Y, [
+                                    a.icon && (a.icon.icon || a.icon.type) ? (e(), t(f, {
                                       key: 0,
-                                      iconObj: u.icon
+                                      iconObj: a.icon
                                     }, null, 8, ["iconObj"])) : d("", !0),
-                                    O(" " + p(e.i18n ? n.$t(u.title) : u.title), 1)
+                                    v(" " + p(n.i18n ? o.$t(a.title) : a.title), 1)
                                   ])
                                 ]),
                                 default: s(() => [
-                                  (o(!0), r(y, null, D(u.children, (h) => (o(), c(t, {
-                                    key: h.index,
-                                    index: h.index,
+                                  (e(!0), r(y, null, D(a.children, (k) => (e(), t(l, {
+                                    key: k.index,
+                                    index: k.index,
                                     onClick: $
                                   }, {
                                     default: s(() => [
-                                      h.icon && (h.icon.icon || h.icon.type) ? (o(), c(f, {
+                                      k.icon && (k.icon.icon || k.icon.type) ? (e(), t(f, {
                                         key: 0,
-                                        iconObj: h.icon
+                                        iconObj: k.icon
                                       }, null, 8, ["iconObj"])) : d("", !0),
-                                      O(" " + p(e.i18n ? n.$t(h.title) : h.title), 1)
+                                      v(" " + p(n.i18n ? o.$t(k.title) : k.title), 1)
                                     ]),
                                     _: 2
                                   }, 1032, ["index"]))), 128))
                                 ]),
                                 _: 2
-                              }, 1032, ["index"])) : (o(), c(t, {
+                              }, 1032, ["index"])) : (e(), t(l, {
                                 key: 1,
-                                index: u.index,
+                                index: a.index,
                                 onClick: $
                               }, {
                                 default: s(() => [
-                                  u.icon && (u.icon.icon || u.icon.type) ? (o(), c(f, {
+                                  a.icon && (a.icon.icon || a.icon.type) ? (e(), t(f, {
                                     key: 0,
-                                    iconObj: u.icon
+                                    iconObj: a.icon
                                   }, null, 8, ["iconObj"])) : d("", !0),
-                                  O(" " + p(e.i18n ? n.$t(u.title) : u.title), 1)
+                                  v(" " + p(n.i18n ? o.$t(a.title) : a.title), 1)
                                 ]),
                                 _: 2
                               }, 1032, ["index"]))
                             ], 64))), 128))
                           ]),
                           _: 2
-                        }, 1032, ["index"])) : (o(), c(t, {
+                        }, 1032, ["index"])) : (e(), t(l, {
                           key: 1,
-                          index: a.index,
+                          index: i.index,
                           onClick: $
                         }, {
                           default: s(() => [
-                            a.icon && (a.icon.icon || a.icon.type) ? (o(), c(f, {
+                            i.icon && (i.icon.icon || i.icon.type) ? (e(), t(f, {
                               key: 0,
-                              iconObj: a.icon
+                              iconObj: i.icon
                             }, null, 8, ["iconObj"])) : d("", !0),
-                            O(" " + p(e.i18n ? n.$t(a.title) : a.title), 1)
+                            v(" " + p(n.i18n ? o.$t(i.title) : i.title), 1)
                           ]),
                           _: 2
                         }, 1032, ["index"]))
                       ], 64))), 128))
                     ]),
                     _: 2
-                  }, 1032, ["popper-class", "index"])) : (o(), c(t, {
+                  }, 1032, ["popper-class", "index"])) : (e(), t(l, {
                     key: 1,
                     class: "first-menu",
-                    index: i.index,
+                    index: c.index,
                     onClick: $
                   }, {
                     title: s(() => [
-                      x("span", null, p(e.i18n ? n.$t(i.title) : i.title), 1)
+                      O("span", null, p(n.i18n ? o.$t(c.title) : c.title), 1)
                     ]),
                     default: s(() => [
-                      i.icon && (i.icon.icon || i.icon.type) ? (o(), c(f, {
+                      c.icon && (c.icon.icon || c.icon.type) ? (e(), t(f, {
                         key: 0,
-                        iconObj: i.icon
+                        iconObj: c.icon
                       }, null, 8, ["iconObj"])) : d("", !0)
                     ]),
                     _: 2
@@ -263,20 +263,20 @@ const U = { class: "vue-ele-nav-plus-box" }, W = { class: "parent-title" }, X = 
           ]),
           _: 1
         }),
-        n.$attrs.mode !== "horizontal" && e.showCollapseBtn ? (o(), r("div", {
+        o.$attrs.mode !== "horizontal" && n.showCollapseBtn ? (e(), r("div", {
           key: 0,
           class: "collapse-btn",
-          onClick: l[0] || (l[0] = (i) => g("collapseChange"))
+          onClick: u[0] || (u[0] = (c) => g("collapseChange"))
         }, [
-          e.collapse ? (o(), r(y, { key: 0 }, [
-            e.closeBtn && (e.closeBtn.icon || e.closeBtn.type) ? (o(), c(f, {
+          n.collapse ? (e(), r(y, { key: 0 }, [
+            n.closeBtn && (n.closeBtn.icon || n.closeBtn.type) ? (e(), t(f, {
               key: 0,
-              iconObj: e.closeBtn
+              iconObj: n.closeBtn
             }, null, 8, ["iconObj"])) : d("", !0)
-          ], 64)) : (o(), r(y, { key: 1 }, [
-            e.openBtn && (e.openBtn.icon || e.openBtn.type) ? (o(), c(f, {
+          ], 64)) : (e(), r(y, { key: 1 }, [
+            n.openBtn && (n.openBtn.icon || n.openBtn.type) ? (e(), t(f, {
               key: 0,
-              iconObj: e.openBtn
+              iconObj: n.openBtn
             }, null, 8, ["iconObj"])) : d("", !0)
           ], 64))
         ])) : d("", !0)
@@ -284,9 +284,9 @@ const U = { class: "vue-ele-nav-plus-box" }, W = { class: "parent-title" }, X = 
     };
   }
 }, m = [Z], _ = {
-  install(e) {
+  install(n) {
     m.forEach((g) => {
-      e.component("vueEleNavPlus", g);
+      n.component("vueEleNavPlus", g);
     });
   }
 };

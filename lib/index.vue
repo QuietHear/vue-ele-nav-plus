@@ -4,7 +4,7 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-08-09 17:44:22
+ * @LastEditTime: 2023-10-09 11:26:19
 */
 <template>
   <div class="vue-ele-nav-plus-box">
@@ -182,7 +182,9 @@ const initMenu = async () => {
     console.log(rowData, "rowData 1111");
     // 实际菜单
     navInformation.value = deepCopy(routeMsg);
-    checkShow(navInformation.value);
+    if (props.onlyShowFirst) {
+      checkShow(navInformation.value);
+    }
     console.log(deepCopy(navInformation.value), "navInformation 2222");
     routeChange();
   }
@@ -201,29 +203,11 @@ const sortData = (list, parentIndex) => {
     rowData.push(deepCopy(item));
   });
 };
-// 移除show:false的菜单
+// 只保留第一层数据
 const checkShow = (list) => {
-  for (let i = 0; i < list.length; i++) {
-    // 需要展示的
-    if (list[i].show !== false) {
-      if (
-        !props.onlyShowFirst &&
-        list[i].children &&
-        list[i].children.length > 0
-      ) {
-        checkShow(list[i].children);
-      }
-      // 移除不需要的子元素
-      else {
-        list[i].children = [];
-      }
-    }
-    // 不展示的
-    else {
-      list.splice(i, 1);
-      i -= 1;
-    }
-  }
+  list.forEach(item => {
+    item.children = [];
+  });
 };
 watch(
   route,
@@ -233,10 +217,11 @@ watch(
 );
 // 路由改变
 const routeChange = () => {
-  const self = searchRoute(route.name);
+  console.log(route, 'now route');
+  const self = searchRoute(route.meta && route.meta.markName ? route.meta.markName : route.name);
   activeIndex.value = '';
   if (self) {
-    activeIndex.value = self.markName ? searchRoute(self.markName)?.index : props.onlyShowFirst ? self.index.split('-')[0] : self.index;
+    activeIndex.value = props.onlyShowFirst ? self.index.split('-')[0] : self.index;
   }
   console.log(activeIndex.value, 'activeIndex.value');
 };

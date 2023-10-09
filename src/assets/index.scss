@@ -1,0 +1,87 @@
+/*
+ * @Author: aFei
+ * @Date: 2023-09-20 13:38:58
+*/
+/*
+ * @LastEditors: aFei
+ * @LastEditTime: 2023-10-07 14:37:04
+*/
+* {
+  padding    : 0;
+  margin     : 0;
+  box-sizing : border-box;
+  outline    : none;
+  list-style : none;
+  font-style : normal;
+  font-weight: normal;
+}
+
+html.dark body {
+  color: #fff;
+}
+
+body {
+  font                   : normal normal 14px "Times New Roman", "Hiragino Sans GB", "Microsoft YaHei", "Arial", sans-serif;
+  color                  : #000;
+  -webkit-font-smoothing : antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  background: none;
+  cursor    : pointer;
+  border    : none;
+  outline   : none;
+}
+
+iframe {
+  border: 0;
+  width : 100%;
+  height: 100%;
+}
+
+html,
+body,
+#app,
+.main,
+.demo {
+  height  : 100%;
+  overflow: hidden;
+}
+
+.demo {
+  padding: 20px 10px;
+
+  &.else {
+    .line {
+      width: calc(var(--el-menu-icon-width) + var(--el-menu-base-level-padding) * 2);
+    }
+
+    .row-box {
+      width: calc(100% - (var(--el-menu-icon-width) + var(--el-menu-base-level-padding) * 2) *2);
+    }
+  }
+
+  .line {
+    height    : calc(100vh - 40px);
+    width     : 220px;
+    transition: width ease-in-out .3s;
+    box-shadow: 2px 0 8px #1d23290d;
+  }
+
+  .row-box {
+    width: calc(100% - 220px *2);
+  }
+
+  .row {
+    height: 60px;
+  }
+
+  .vue-ele-nav-plus-box {
+    --ele-nav-bg: transparent;
+  }
+}
