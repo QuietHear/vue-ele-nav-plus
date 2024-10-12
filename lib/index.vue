@@ -4,7 +4,7 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-10-09 11:26:19
+ * @LastEditTime: 2024-10-12 17:09:12
 */
 <template>
   <div class="vue-ele-nav-plus-box">
@@ -166,11 +166,15 @@ watch(
 );
 // 深拷贝
 const deepCopy = (obj) => {
-  let result = obj instanceof Array ? [] : {};
-  for (let key in obj) {
-    result[key] = typeof obj[key] === 'object' ? deepCopy(obj[key]) : obj[key];
+  if (typeof obj === 'object' && !isVNode(obj) && obj !== null && !obj instanceof Date) {
+    let result = obj instanceof Array ? [] : {};
+    for (let key in obj) {
+      result[key] = typeof obj[key] === 'object' && !isVNode(obj[key]) && obj[key] !== null && !obj[key] instanceof Date ? deepCopy(obj[key]) : obj[key];
+    }
+    return result;
+  } else {
+    return obj
   }
-  return result;
 };
 // 初始化菜单
 const initMenu = async () => {
