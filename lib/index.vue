@@ -4,7 +4,7 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2024-10-12 17:09:12
+ * @LastEditTime: 2024-10-12 17:18:27
 */
 <template>
   <div class="vue-ele-nav-plus-box">
@@ -173,7 +173,7 @@ const deepCopy = (obj) => {
     }
     return result;
   } else {
-    return obj
+    return obj;
   }
 };
 // 初始化菜单
